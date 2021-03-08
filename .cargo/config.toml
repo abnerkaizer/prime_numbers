@@ -3,8 +3,8 @@ rr = "run --release"
 br = "build --release"
 cr = "check --release"
 f = "fmt"
-con = "run --bin concurrent"
-seq = "run --bin sequencial"
+con = "run --release --bin concurrent"
+seq = "run --release --bin sequencial"
 
 [build]
 target = "x86_64-unknown-linux-musl"
