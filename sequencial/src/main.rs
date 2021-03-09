@@ -1,7 +1,12 @@
 use std::time::Instant;
 
+/// Programa sequêncial que verifica em uma lista de números
+/// por 30 min quais entre eles são primos ou não.
 fn main() {
-    let mut n: u128;
+    //O tipo usize é sem sinal e depende da arquitetura
+    //que está sendo compilado se for 32 bits compila
+    //para u32 e se for 64 bits, meu caso,para u64.
+    let mut n: usize;
     n = 0;
     let now = Instant::now();
     loop {
@@ -15,10 +20,9 @@ fn main() {
         }
         n += 1;
     }
-    println!("THE END");
 }
-
-fn is_prime(n: u128) -> bool {
+/// Função que verifica se um número é primo.
+fn is_prime(n: usize) -> bool {
     if n <= 1 {
         return false;
     }
