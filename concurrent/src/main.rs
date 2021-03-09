@@ -32,7 +32,7 @@ fn main() {
         }
     }
 }
-/// Função a ser executada pelas threads do pool. 
+/// Função a ser executada pelas threads do pool.
 fn task(n: usize) {
     if is_prime(n) {
         println!("{}", n);
