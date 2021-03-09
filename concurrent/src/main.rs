@@ -31,7 +31,9 @@ fn main() {
             break;
         }
     }
-    drop(pool);
+    //Aqui o pool sai de escopo então ele será liberado da memória junto do programa.
+    //Isso chama lifetime em Rust, garantindo que uma variável viva enquanto o escopo
+    //que ela está existir.
 }
 /// Função a ser executada pelas threads do pool.
 fn task(n: usize) {
