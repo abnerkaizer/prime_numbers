@@ -3,29 +3,31 @@ use std::time::Instant;
 use threadpool::ThreadPool;
 
 fn main() {
-    let mut n: u128;
+    let mut n: usize;
     n = 0;
     //Criando um pool de threads com a quantidade de processadores logicos no PC.
     //Nesse caso 4.
     let pool = ThreadPool::new(num_cpus::get());
     let now = Instant::now();
     loop {
-        pool.execute(move || task(n));
+        if n <= 10000000 {
+            pool.execute(move || task(n));
+            n += 1;
+        }
 
         let then = Instant::now();
         if then.duration_since(now).as_secs() >= 1800 {
             break;
         }
-        n += 1;
     }
     println!("THE END");
 }
-fn task(n: u128) {
+fn task(n: usize) {
     if is_prime(n) {
         println!("{}", n);
     }
 }
-fn is_prime(n: u128) -> bool {
+fn is_prime(n: usize) -> bool {
     if n <= 1 {
         return false;
     }
