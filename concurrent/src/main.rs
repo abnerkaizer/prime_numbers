@@ -31,6 +31,7 @@ fn main() {
             break;
         }
     }
+    drop(pool);
 }
 /// Função a ser executada pelas threads do pool.
 fn task(n: usize) {
