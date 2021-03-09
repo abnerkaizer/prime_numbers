@@ -10,7 +10,7 @@ fn main() {
     let pool = ThreadPool::new(num_cpus::get());
     let now = Instant::now();
     loop {
-        if n <= 10000000 {
+        if n <= 10_000_000 {
             pool.execute(move || task(n));
             n += 1;
         }
