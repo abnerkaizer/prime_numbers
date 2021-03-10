@@ -1,6 +1,6 @@
 use std::time::Instant;
 
-/// Programa sequêncial que verifica em uma lista de números
+/// Programa sequencial que verifica em uma lista de números
 /// por 30 min quais entre eles são primos ou não.
 fn main() {
     //O tipo usize é sem sinal e depende da arquitetura
