@@ -7,8 +7,8 @@ fn main() {
     //O tipo usize é sem sinal e depende da arquitetura
     //que está sendo compilado se for 32 bits compila
     //para u32 e se for 64 bits, meu caso,para u64.
-    let mut n: usize;
-    n = 0;
+    let mut n: usize = 0;
+
     //Criando um pool de threads com a quantidade de processadores logicos no PC.
     //Nesse caso 4.
     let pool = ThreadPool::new(num_cpus::get());
@@ -16,24 +16,17 @@ fn main() {
     let now = Instant::now();
     //Tipo de laço em Rust equivale a um "while true {}".
     loop {
-        //Coloquei um limite menor que o maximo possivel
-        //porque estava estourando a memoria RAM e a swap.
-        //Ocorre devido a fila de tarefas do pool.
-        if n <= 10_000_000 {
-            //Manda o pool executar a tarefa passando uma clojure
-            //com a função a ser executada.
-            pool.execute(move || task(n));
-            n += 1;
-        }
-        //Se chega a 30 min(1800s) quebra o loop.
-        let then = Instant::now();
-        if then.duration_since(now).as_secs() >= 1800 {
+        pool.execute(move || task(n));
+        n += 1;
+
+        if n == 200_000_000 {
+            pool.join();
+            let then = Instant::now();
+            let duration = then.duration_since(now).as_secs();
+            println!("Duration: {}s", duration);
             break;
         }
     }
-    //Aqui o pool sai de escopo então ele será liberado da memória junto do programa.
-    //Isso chama lifetime em Rust, garantindo que uma variável viva enquanto o escopo
-    //que ela está existir.
 }
 /// Função a ser executada pelas threads do pool.
 fn task(n: usize) {

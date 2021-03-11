@@ -6,16 +6,19 @@ fn main() {
     //O tipo usize é sem sinal e depende da arquitetura
     //que está sendo compilado se for 32 bits compila
     //para u32 e se for 64 bits, meu caso,para u64.
-    let mut n: usize;
-    n = 0;
+    let mut n: usize = 0;
+
     let now = Instant::now();
+
     loop {
         if is_prime(n) {
-            println!("{}", n);
+            println!("{}s", n);
         }
 
-        let then = Instant::now();
-        if then.duration_since(now).as_secs() >= 1800 {
+        if n == 200_000_000 {
+            let then = Instant::now();
+            let duration = then.duration_since(now).as_secs();
+            println!("Duration: {}", duration);
             break;
         }
         n += 1;
