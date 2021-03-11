@@ -18,7 +18,8 @@ fn main() {
     loop {
         pool.execute(move || task(n));
         n += 1;
-
+        //Limite se deve a estouro de memoria RAM e swap
+        //O kernel mata o processo devido a isso.
         if n == 200_000_000 {
             pool.join();
             let duration = Instant::now().duration_since(now).as_secs();

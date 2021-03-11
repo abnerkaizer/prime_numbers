@@ -14,7 +14,8 @@ fn main() {
         if is_prime(n) {
             println!("{}s", n);
         }
-
+        //Limite devido ao problema da solução
+        //concorrente que estoura memoria
         if n == 200_000_000 {
             let duration = Instant::now().duration_since(now).as_secs();
             println!("Duration: {}", duration);
