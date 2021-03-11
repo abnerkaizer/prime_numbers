@@ -21,8 +21,7 @@ fn main() {
 
         if n == 200_000_000 {
             pool.join();
-            let then = Instant::now();
-            let duration = then.duration_since(now).as_secs();
+            let duration = Instant::now().duration_since(now).as_secs();
             println!("Duration: {}s", duration);
             break;
         }
