@@ -2,7 +2,7 @@ use num_cpus;
 use std::time::Instant;
 use threadpool::ThreadPool;
 /// Programa concorrente que verifica em uma sequência de números
-/// por 30 min quais entre eles são primos ou não.
+/// quais entre eles são primos ou não.
 fn main() {
     //O tipo usize é sem sinal e depende da arquitetura
     //que está sendo compilado se for 32 bits compila
@@ -20,7 +20,7 @@ fn main() {
         n += 1;
         //Limite se deve a estouro de memoria RAM e swap
         //O kernel mata o processo devido a isso.
-        if n == 200_000_000 {
+        if n == 100_000_000 {
             pool.join();
             let duration = Instant::now().duration_since(now).as_secs();
             println!("Duration: {}s", duration);

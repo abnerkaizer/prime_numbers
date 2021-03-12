@@ -1,7 +1,7 @@
 use std::time::Instant;
 
 /// Programa sequencial que verifica em uma lista de números
-/// por 30 min quais entre eles são primos ou não.
+/// quais entre eles são primos ou não.
 fn main() {
     //O tipo usize é sem sinal e depende da arquitetura
     //que está sendo compilado se for 32 bits compila
@@ -12,13 +12,13 @@ fn main() {
 
     loop {
         if is_prime(n) {
-            println!("{}s", n);
+            println!("{}", n);
         }
         //Limite devido ao problema da solução
         //concorrente que estoura memoria
-        if n == 200_000_000 {
+        if n == 100_000_000 {
             let duration = Instant::now().duration_since(now).as_secs();
-            println!("Duration: {}", duration);
+            println!("Duration: {}s", duration);
             break;
         }
         n += 1;
